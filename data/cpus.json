@@ -1,0 +1,22 @@
+{
+    "Intel Core i5-8250U": {
+        "cores": 4,
+        "threads": 8,
+        "tier": 2
+    },
+    "Intel Core i5-12450H": {
+        "cores": 8,
+        "threads": 12,
+        "tier": 5
+    },
+    "AMD Ryzen 5 5600H": {
+        "cores": 6,
+        "threads": 12,
+        "tier": 5
+    },
+    "AMD Ryzen 7 5800H": {
+        "cores": 8,
+        "threads": 16,
+        "tier": 6
+    }
+}

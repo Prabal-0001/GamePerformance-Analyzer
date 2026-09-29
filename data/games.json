@@ -1,0 +1,22 @@
+{
+    "Valorant": {
+        "genre": "Competitive",
+        "target_fps": 60
+    },
+    "Minecraft": {
+        "genre": "Sandbox",
+        "target_fps": 60
+    },
+    "Grand Theft Auto V": {
+        "genre": "Open World",
+        "target_fps": 60
+    },
+    "Cyberpunk 2077": {
+        "genre": "Open World",
+        "target_fps": 60
+    },
+    "Among Us": {
+        "genre": "Casual",
+        "target_fps": 60
+    }
+}
