@@ -1,13 +1,9 @@
-import json
+from database import GAMES
 
-GAME_FILE = "data/games.json"
 
-def load_games():
-    with open(GAME_FILE, "r", encoding="utf-8") as file:
-        return json.load(file)
-
+# Ask the user which game and display settings are being tested.
 def get_game():
-    games = load_games()
+    games = GAMES
 
     print("\n--- GAME CONFIGURATION ---")
     print("Available games:")
@@ -24,6 +20,7 @@ def get_game():
         except ValueError:
             print("Enter a number.")
 
+    # Convert the selected menu number into the corresponding game name.
     game_name = list(games.keys())[choice - 1]
 
     resolution = input("Resolution (e.g. 1920x1080): ").strip()

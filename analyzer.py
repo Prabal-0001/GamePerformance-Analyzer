@@ -1,14 +1,17 @@
+# Compare the minimum FPS with the average to estimate frame-rate stability.
 def calculate_stability(average_fps, minimum_fps):
     if average_fps <= 0:
         return 0
     return (minimum_fps / average_fps) * 100
 
 
+# Convert an FPS value into a score using 60 FPS as the reference point.
 def fps_score(fps):
     score = (fps / 60) * 100
     return min(score, 100)
 
 
+# Combine FPS, minimum FPS and stability into one performance score.
 def calculate_performance_score(test):
     avg = fps_score(test["average_fps"])
     minimum = fps_score(test["minimum_fps"])
@@ -19,6 +22,7 @@ def calculate_performance_score(test):
     return (avg * 0.50) + (minimum * 0.30) + (stability * 0.20)
 
 
+# Give the calculated score a simple performance rating.
 def classify_score(score):
     if score >= 90:
         return "Excellent"
@@ -31,6 +35,7 @@ def classify_score(score):
     return "Poor"
 
 
+# Use the entered results to give a basic indication of a limitation.
 def analyze_bottleneck(hardware, game, test, stability):
     gpu = hardware["gpu_data"]
     cpu = hardware["cpu_data"]
@@ -54,6 +59,7 @@ def analyze_bottleneck(hardware, game, test, stability):
     return "No clear bottleneck indicated"
 
 
+# Analyze one benchmark before it is added to the comparison.
 def analyze_performance(hardware, game, test):
     stability = calculate_stability(
         test["average_fps"], test["minimum_fps"]
@@ -70,6 +76,7 @@ def analyze_performance(hardware, game, test):
     }
 
 
+# Analyze each graphics preset and keep the results together for comparison.
 def compare_benchmarks(hardware, game, tests):
     results = []
 

@@ -1,3 +1,4 @@
+# Small checks for the main scoring functions.
 from analyzer import calculate_stability, classify_score
 
 assert round(calculate_stability(80, 72), 2) == 90.00

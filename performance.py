@@ -1,3 +1,4 @@
+# Keep asking until a valid non-negative number is entered.
 def get_non_negative_float(prompt):
     while True:
         try:
@@ -9,9 +10,11 @@ def get_non_negative_float(prompt):
             print("Enter a valid number.")
 
 
+# Collect one set of FPS results for a graphics preset.
 def get_one_benchmark(quality):
     print(f"\n--- {quality.upper()} BENCHMARK ---")
 
+    # These three values are entered from the user's own benchmark.
     average = get_non_negative_float("Average FPS: ")
     minimum = get_non_negative_float("Minimum FPS: ")
     maximum = get_non_negative_float("Maximum FPS: ")
@@ -41,6 +44,7 @@ def get_one_benchmark(quality):
     }
 
 
+# Run the benchmark input for all four graphics presets.
 def get_performance_tests():
     print("\n--- GRAPHICS BENCHMARK ---")
     print("Enter the FPS results for all four graphics settings.")

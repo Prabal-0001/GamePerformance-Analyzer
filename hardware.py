@@ -1,14 +1,7 @@
-import json
-
-GPU_FILE = "data/gpus.json"
-CPU_FILE = "data/cpus.json"
+from database import CPUS, GPUS
 
 
-def load_data(filename):
-    with open(filename, "r", encoding="utf-8") as file:
-        return json.load(file)
-
-
+# Look through the local data and find a matching hardware name.
 def find_component(database, name):
     name = name.strip().lower()
     for key, value in database.items():
@@ -17,17 +10,15 @@ def find_component(database, name):
     return None, None
 
 
+# Collect the hardware details entered by the user.
 def get_hardware():
-    gpus = load_data(GPU_FILE)
-    cpus = load_data(CPU_FILE)
-
     print("\n--- HARDWARE CONFIGURATION ---")
     print("Known CPUs:")
-    print(", ".join(cpus.keys()))
+    print(", ".join(CPUS.keys()))
     cpu = input("Enter CPU: ").strip()
 
     print("Known GPUs:")
-    print(", ".join(gpus.keys()))
+    print(", ".join(GPUS.keys()))
     gpu = input("Enter GPU: ").strip()
 
     try:
@@ -38,13 +29,13 @@ def get_hardware():
         print("Invalid RAM. Using 8 GB.")
         ram = 8
 
-    cpu_name, cpu_data = find_component(cpus, cpu)
-    gpu_name, gpu_data = find_component(gpus, gpu)
+    cpu_name, cpu_data = find_component(CPUS, cpu)
+    gpu_name, gpu_data = find_component(GPUS, gpu)
 
     if cpu_data is None:
-        print("CPU not found in database. Capability analysis will be limited.")
+        print("CPU not found in local database. Capability analysis will be limited.")
     if gpu_data is None:
-        print("GPU not found in database. Capability analysis will be limited.")
+        print("GPU not found in local database. Capability analysis will be limited.")
 
     return {
         "cpu": cpu_name or cpu,
@@ -55,6 +46,7 @@ def get_hardware():
     }
 
 
+# Turn the stored hardware information into a simple capability level.
 def get_hardware_capability(hardware):
     cpu = hardware["cpu_data"]
     gpu = hardware["gpu_data"]
@@ -65,7 +57,7 @@ def get_hardware_capability(hardware):
             "gpu_tier": "Unknown",
             "vram": "Unknown",
             "system_tier": "Unknown",
-            "summary": "Hardware was not found in the local database."
+            "summary": "Hardware was not found in the local reference data."
         }
 
     cpu_tier = cpu["tier"]

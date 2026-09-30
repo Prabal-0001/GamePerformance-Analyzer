@@ -1,3 +1,4 @@
+# Build the final report in the same format used by the terminal output.
 def build_report(hardware, capability, game, comparison, recommendation):
     lines = []
     lines.append("=" * 60)
@@ -50,10 +51,12 @@ def build_report(hardware, capability, game, comparison, recommendation):
     return "\n".join(lines)
 
 
+# Display the completed report in the terminal.
 def print_report(report_text):
     print("\n" + report_text)
 
 
+# Save a copy so the results can be opened later.
 def save_report(report_text, filename="performance_report.txt"):
     with open(filename, "w", encoding="utf-8") as file:
         file.write(report_text)

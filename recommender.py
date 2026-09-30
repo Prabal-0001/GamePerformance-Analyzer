@@ -1,5 +1,7 @@
+# Choose the highest tested setting that still reaches the target FPS.
 def generate_recommendation(hardware, game, tests, comparison):
     target = game["profile"].get("target_fps", 60)
+    # A setting is considered playable when its average FPS reaches the target.
     playable = [test for test in tests if test["average_fps"] >= target]
 
     if playable:
@@ -7,6 +9,7 @@ def generate_recommendation(hardware, game, tests, comparison):
     else:
         recommended = "Low"
 
+    # Add a few practical suggestions based on the selected result.
     suggestions = []
     recommended_result = next(
         result for result in comparison["results"]
